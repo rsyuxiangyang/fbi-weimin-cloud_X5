@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<div xmlns="http://www.w3.org/1999/xhtml" xid="window" class="window" component="$UI/system/components/justep/window/window" design="device:m;">  
+  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;left:80px;top:146px;" onLoad="modelLoad">
+  </div> 
+<span component="$UI/system/components/justep/windowReceiver/windowReceiver" xid="windowReceiver1" style="left:57px;top:17px;" onReceive="windowReceiver1Receive"></span><div component="$UI/system/components/justep/panel/panel" class="x-panel x-full" xid="panel1">
+   <div class="x-panel-top" xid="top1">
+   <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar" title="会员注册" xid="titleBar1">
+    <div class="x-titlebar-left text-muted" xid="div2">
+     <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon" label="搜索" xid="button6" icon="icon-chevron-left" onClick="button6Click">
+      <i xid="i6" class="icon-chevron-left"></i>
+      <span xid="span6">搜索</span></a> </div> 
+    <div class="x-titlebar-title" xid="div5">会员注册</div>
+    <div class="x-titlebar-right reverse" xid="div6"></div></div> </div><div class="x-panel-content x-cards"><div xid="div7"><h1 xid="h11" style="color:white"><![CDATA[系统正在审核您的注册信息，T+1日内会出示审核结果，请随时关注！]]></h1></div></div>
+   </div></div>
