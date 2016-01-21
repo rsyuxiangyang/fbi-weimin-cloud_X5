@@ -18,6 +18,7 @@ define(function(require) {
 	var Model = function() {
 		this.callParent();
 		this._loginBind_uid3rd = "";
+		this._loginBind_displayName="";
 	};
 
 	Model.prototype.modelLoad = function(event) {
@@ -30,6 +31,7 @@ define(function(require) {
 
 	Model.prototype.loginBindReceiverReceive = function(event) {
 		this._loginBind_uid3rd = event.data.uid3rdPara;
+		this._loginBind_displayName = event.data.displayNamePara;
 	};
 
 	Model.prototype.telInputChange = function(event) {
@@ -57,36 +59,28 @@ define(function(require) {
 				"tel" : tel,
 				"cardNoLastFour" : cardNoLastFour,
 				"checkNum" : checkNum,
-				"uid3rd" : this._loginBind_uid3rd
+				"uid3rd" : this._loginBind_uid3rd,
+				"displayName":this._loginBind_displayName
 			};
 			var self = this;
 			var successFunc = function(resultData) {
-				/*
-				 * var showInfo="用户信息保存成功，请关注系统审核结果！"; justep.Util.hint(showInfo);
-				 * self.comp('loginBindReceiver').windowCancel();
-				 */
-	
 				var retResult = resultData["result"];
-				var showInfo = null;
-				if ("success" == retResult) {
-					showInfo = "信息保存成功！";
-					justep.Util.hint(showInfo);
+				if ("unSupport" == retResult) {
+					justep.Util.hint("请关注'WEI民公益'公众号！");
+					//此处可跳转到WEI民公益公众号二维码页面
+				}else if ("checkNumFail" == retResult) {
+					justep.Util.hint("验证码错误！");
+				}else if ("success" == retResult) {
+					justep.Util.hint("信息保存成功！");
 					self.comp('loginBindReceiver').windowEnsure('1');
-				}else if ("checkNumfail" == retResult) {
-					showInfo = "验证码错误！";
-					justep.Util.hint(showInfo);
-				} 
-				else if ("fail" == retResult) {
-					showInfo = "信息保存失败！";
-					justep.Util.hint(showInfo);
+				}else if ("error" == retResult) {
+					justep.Util.hint("信息保存失败！");
 					self.comp('loginBindReceiver').windowEnsure('0');
-				}
-	
-			};
-	
+				}	
+			};	
 			$.ajax({
 				type : "POST",
-				url : require.toUrl('/weixin/ms/X5/saveRegisteInfo'),
+				url : require.toUrl('/weixin/ms/X5/saveRegistrationInfo'),
 				dataType : 'json',
 				data : params,
 				async : false,
@@ -95,8 +89,7 @@ define(function(require) {
 				error : function() {
 					throw justep.Error.create("加载数据失败");
 				}
-			});
-	   
+			});	   
 	   }
 	};
 
@@ -118,11 +111,15 @@ define(function(require) {
 					"tel" : telTemp
 				};
 				var successFunc = function(resultData) {
-					justep.Util.hint('发送验证码成功！');
+					if ("success" == retResult) {
+						justep.Util.hint("发送验证码成功！");					
+					}else if ("error" == retResult) {
+						justep.Error.create("发送验证码失败！");
+					} 
 				};
 				$.ajax({
 					type : "GET",
-					url : require.toUrl('/weixin/ms/X5/sendCheckCode'),
+					url : require.toUrl('/weixin/ms/X5/sendCheckNum'),
 					dataType : 'json',
 					data : params,
 					async : false,

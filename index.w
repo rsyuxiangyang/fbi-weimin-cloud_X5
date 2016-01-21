@@ -47,16 +47,16 @@
   <column label="custName" name="custName" type="String" xid="xid14"></column></div></div>  
   <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="mapDialog"
     style="left:12px;top:13px;" routable="true" src="$UI/takeout/mapActivity.w"/>  
-  <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="goodsDetailDialog" src="$UI/WEI_CARD/detail.w" routable="true"></span><span component="$UI/system/components/justep/windowDialog/windowDialog" xid="loginBindDialog" src="$UI/WEI_CARD/registration.w" style="left:9px;top:11px;" onReceive="loginBindDialogReceive" routable="true"></span>
+  <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="goodsDetailDialog" src="$UI/takeout/detail.w" routable="true"></span><span component="$UI/system/components/justep/windowDialog/windowDialog" xid="loginBindDialog" src="$UI/takeout/registration.w" style="left:9px;top:11px;" onReceive="loginBindDialogReceive" routable="true"></span>
   
-  <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="myPointsDialog" src="$UI/WEI_CARD/myPoints.w" style="left:9px;top:10px;" routable="true"></span>
-  <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="registrationCheckDialog" src="$UI/WEI_CARD/registrationCheck.w" routable="true"></span>
-  <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="fencaiDialog" src="$UI/WEI_CARD/weiDemeanour.w" routable="true"></span>
-  <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="myDonationDialog" routable="true" src="$UI/WEI_CARD/myDonation.w"></span><div component="$UI/system/components/justep/panel/panel" class="x-panel x-full"
+  <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="myPointsDialog" src="$UI/takeout/myPoints.w" style="left:9px;top:10px;" routable="true"></span>
+  <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="registrationCheckDialog" src="$UI/takeout/registrationCheck.w" routable="true"></span>
+  <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="fencaiDialog" src="$UI/takeout/weiDemeanour.w" routable="true"></span>
+  <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="myDonationDialog" routable="true" src="$UI/takeout/myDonation.w"></span><div component="$UI/system/components/justep/panel/panel" class="x-panel x-full"
     xid="panel1"> 
     <div class="x-panel-content" xid="content1"> 
       <div component="$UI/system/components/justep/contents/contents" class="x-contents x-full"
-        active="0" xid="contents" slidable="false" swipe="true"> 
+        active="0" xid="contents" slidable="false" swipe="true" onActiveChange="contentsActiveChange"> 
         <div class="x-contents-content active x-scroll-view" xid="goodsContent"> 
           <div class="x-scroll" component="$UI/system/components/justep/scrollView/scrollView"
             xid="scrollView2"> 
@@ -109,7 +109,7 @@
     <span xid="span4">
      <span xid="span3" class="pull-left">
       <div xid="div24" class="text text-center">
-       <img src="" alt="" xid="image13" class="pull-left text-center" style="width:30px;position: absolute;top:25%;" bind-attr-src="$model.getImageUrl('./img/icons/wodejifen.png')" height="30px"></img>
+       <img src="" alt="" xid="image13" class="pull-left text-center" style="width:30px;position: absolute;top:25%;" bind-attr-src="$model.getImageUrl('./img/icons/wodejuanzeng.png')" height="30px"></img>
        <h4 xid="h42" class="pull-right fontColor2" style="position: absolute;top:20%;left:20%;"><![CDATA[我的捐赠]]></h4></div> </span> 
      <span xid="span7" class="pull-right"></span></span> </div> </div><div component="$UI/system/components/bootstrap/row/row" class="row clearfix center-block  table-bordered x-fill" xid="aixinjuanzengRow" style="width:100%;background-color:white;" bind-click="aixinjuanzengRowClick">
     <div class="col col-xs-12" xid="col12" style="height:60px;">
@@ -131,7 +131,7 @@
      <span xid="span1">
       <span xid="span14" class="pull-left">
        <div xid="div9" class="text text-center">
-        <img src="" alt="" xid="image5" class="pull-left text-center" style="position: absolute;width:30px;top:25%;" bind-attr-src="$model.getImageUrl('./img/icons/gerenxinxi.png')" height="30px"></img>
+        <img src="" alt="" xid="image5" class="pull-left text-center" style="position: absolute;width:30px;top:25%;" bind-attr-src="$model.getImageUrl('./img/icons/zuixinhuodong.png')" height="30px"></img>
         <h4 xid="h46" class="pull-right fontColor2" style="position: absolute;top:20%;left:20%;"><![CDATA[最新活动]]></h4></div> </span> </span> </div> </div><div component="$UI/system/components/bootstrap/row/row" class="row clearfix center-block  table-bordered x-fill" xid="weiminfengcaiRow" style="width:100%;background-color:white;" bind-click="weiminfengcaiRowClick">
    <div class="col col-xs-12" xid="col13" style="height:60px;">
     <span xid="span35">
@@ -178,7 +178,7 @@
      <span xid="span24">
       <span xid="span22" class="pull-left">
        <div xid="div16" class="text text-center">
-        <img src="" alt="" xid="image3" class="pull-left text-center" style="width:30px;position: absolute;top:25%;" bind-attr-src="$model.getImageUrl('./img/icons/huiyuanrenzheng.png')" height="30px"></img>
+        <img src="" alt="" xid="image3" class="pull-left text-center" style="width:30px;position: absolute;top:25%;" bind-attr-src="$model.getImageUrl('./img/icons/rongyuzhengshu.png')" height="30px"></img>
         <h4 xid="h44" class="pull-right fontColor2" style="position: absolute;top:20%;left:20%;"><![CDATA[荣誉证书]]></h4></div> </span> 
       <span xid="span23" class="pull-right"></span></span> </div> </div> 
    <div component="$UI/system/components/bootstrap/row/row" class="row clearfix center-block  table-bordered x-fill" xid="xingjiRow" style="width:100%;background-color:white;" bind-click="xingjiRowClick">

@@ -55,8 +55,7 @@ define(function(require) {
 		};
 		var successFunc = function(resultData) {
 			var retResult = resultData["result"];
-			if ("nodata" == retResult) {
-				justep.Util.hint("您还没有捐赠记录哦！");			
+			if ("nodata" == retResult) {		
 			}else if("error"==retResult){
 				justep.Error.create("加载数据失败！");	
 			}else{	

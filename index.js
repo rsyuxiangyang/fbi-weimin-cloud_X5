@@ -65,6 +65,8 @@ define(function(require) {
 				self._userPhotoURL = weixinUser.headimgurl;
 				self.initBpCustsData(weixinUser.openid);// 有可能是异步
 			});
+		}else{
+//			this.initBpCustsData('');
 		}
 	};
 
@@ -72,14 +74,18 @@ define(function(require) {
 		var self = this;
 		var bpCustsData = this.comp("bpCustsData");
 		var params = {
-			"columns" : Baas.getDataColumns(bpCustsData),
 			"uid3rd" : openid
 		};
 		var successFunc = function(resultData) {
-			var retLength = resultData.length;
-			if (retLength === 0) {
+			var retResult = resultData["result"];
+			if ("unSupport" == retResult) {	
+				self._state = '0';		
+			}else if ("nodata" == retResult) {
 				self._state = '0';
-			} else {
+			}else if ("error" == retResult) {
+				self._state = '0';
+				throw justep.Error.create("加载用户数据失败");
+			}else{
 				var append = event.options && event.options.append;
 				bpCustsData.loadData(resultData, append);
 				self._state = '1';
@@ -87,7 +93,7 @@ define(function(require) {
 		};
 		$.ajax({
 			type : "GET",
-			url : require.toUrl('/weixin/ms/X5/checkBind'),
+			url : require.toUrl('/weixin/ms/X5/getBindCust'),
 			dataType : 'json',
 			data : params,
 			async : false,
@@ -103,7 +109,8 @@ define(function(require) {
 		if (this._state == '0') {
 			this.comp('loginBindDialog').open({
 				data : {
-					uid3rdPara : this._userID
+					uid3rdPara : this._userID,
+					displayNamePara:this._userDefaultName
 				}
 			});
 		} else {
@@ -115,7 +122,8 @@ define(function(require) {
 		if (this._state == '0') {
 			this.comp('loginBindDialog').open({
 				data : {
-					uid3rdPara : this._userID
+					uid3rdPara : this._userID,
+					displayNamePara:this._userDefaultName
 				}
 			});
 		} else {
@@ -145,12 +153,18 @@ define(function(require) {
 			"offset" : event.offset
 		};
 		var successFunc = function(resultData) {
-			var append = event.options && event.options.append;
-			data.loadData(resultData, append);
+			var retResult = resultData["result"];
+			if ("nodata" == retResult) {
+			}else if("error"==retResult){
+				justep.Error.create("加载数据失败！");	
+			}else{
+				var append = event.options && event.options.append;
+				data.loadData(resultData, append);
+			}
 		};
 		$.ajax({
 			type : "GET",
-			url : require.toUrl('/weixin/ms/X5/qryGoods'),
+			url : require.toUrl('/weixin/ms/X5/getGoodsData'),
 			dataType : 'json',
 			data : params,
 			async : false,
@@ -160,13 +174,12 @@ define(function(require) {
 				throw justep.Error.create("加载数据失败");
 			}
 		});
-
 	};
 
 	Model.prototype.bpCustsDataCustomRefresh = function(event) {
 		var bpCustsData = event.source;
 		var params = {
-			"columns" : Baas.getDataColumns(bpCustsData),
+//			"columns" : Baas.getDataColumns(bpCustsData),
 			"uid3rd" : this._userID
 		};
 		var successFunc = function(resultData) {
@@ -194,8 +207,15 @@ define(function(require) {
 			"uid3rd" : this._userID
 		};
 		var successFunc = function(resultData) {
-			var append = event.options && event.options.append;
-			ownContentData.loadData(resultData, append);
+			var retResult = resultData["result"];
+			if ("nodata" == retResult) {
+				justep.Error.create("加载数据失败！");
+			}else if("error"==retResult){
+				justep.Error.create("加载数据失败！");	
+			}else{
+				var append = event.options && event.options.append;
+				ownContentData.loadData(resultData, append);
+			}
 		};
 		$.ajax({
 			type : "GET",
@@ -218,7 +238,8 @@ define(function(require) {
 		if (this._state == '0') {
 			this.comp('loginBindDialog').open({
 				data : {
-					uid3rdPara : uid3rdTemp
+					uid3rdPara : uid3rdTemp,
+					displayNamePara:this._userDefaultName
 				}
 			});
 		} else {
@@ -246,7 +267,8 @@ define(function(require) {
 		if (this._state == '0') {
 			this.comp('loginBindDialog').open({
 				data : {
-					uid3rdPara : uid3rdTemp
+					uid3rdPara : uid3rdTemp,
+					displayNamePara:this._userDefaultName
 				}
 			});
 		} else {
@@ -261,7 +283,8 @@ define(function(require) {
 		if (this._state == '0') {
 			this.comp('loginBindDialog').open({
 				data : {
-					uid3rdPara : uid3rdTemp
+					uid3rdPara : uid3rdTemp,
+					displayNamePara:this._userDefaultName
 				}
 			});
 		} else {
@@ -311,7 +334,8 @@ define(function(require) {
 		if (this._state == '0') {
 			this.comp('loginBindDialog').open({
 				data : {
-					uid3rdPara : uid3rdTemp
+					uid3rdPara : uid3rdTemp,
+					displayNamePara:this._userDefaultName
 				}
 			});
 		} else {
@@ -330,7 +354,8 @@ define(function(require) {
 		if (this._state == '0') {
 			this.comp('loginBindDialog').open({
 				data : {
-					uid3rdPara : uid3rdTemp
+					uid3rdPara : uid3rdTemp,
+					displayNamePara:this._userDefaultName
 				}
 			});
 		} else {
@@ -348,7 +373,8 @@ define(function(require) {
 		if (this._state == '0') {
 			this.comp('loginBindDialog').open({
 				data : {
-					uid3rdPara : uid3rdTemp
+					uid3rdPara : uid3rdTemp,
+					displayNamePara:this._userDefaultName
 				}
 			});
 		} else {
@@ -359,6 +385,36 @@ define(function(require) {
 			});
 		}
 
+	};
+	
+
+	Model.prototype.contentsActiveChange = function(event){
+		switch (event.to) {
+		case 1:
+			if (this._state == '0') {
+				this.comp('loginBindDialog').open({
+					data : {
+						uid3rdPara : this._userID,
+						displayNamePara:this._userDefaultName
+					}
+				});
+			} else {
+	
+			}
+			break;
+		case 2:
+			if (this._state == '0') {
+				this.comp('loginBindDialog').open({
+					data : {
+						uid3rdPara : this._userID,
+						displayNamePara:this._userDefaultName
+					}
+				});
+			} else {
+				this.loadOwnContentData();
+			}
+			break;
+		}
 	};
 
 	return Model;

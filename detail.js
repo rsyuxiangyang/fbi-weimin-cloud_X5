@@ -63,8 +63,15 @@ define(function(require) {
 			"goodsId":this._goodsId
 		};
 		var successFunc = function(resultData) {
-			var append = event.options && event.options.append;
-			gmGoodsDtlInfoData.loadData(resultData, append);
+			var retResult = resultData["result"];
+			if ("nodata" == retResult) {
+				justep.Error.create("加载数据失败！");
+			}else if("error"==retResult){
+				justep.Error.create("加载数据失败！");	
+			}else{
+				var append = event.options && event.options.append;
+				gmGoodsDtlInfoData.loadData(resultData, append);
+			}
 		};
 		$.ajax({
             type: "GET",
@@ -101,7 +108,6 @@ define(function(require) {
 			};
 			var successFunc = function(resultData) {
 				var retResult=resultData["result"];
-	//			alert(retResult);
 				if("success"==retResult){					
 					justep.Util.hint("捐赠成功！");
 					gmGoodsDtlInfoData.refreshData();					
@@ -113,14 +119,14 @@ define(function(require) {
 			};
 			$.ajax({
 	            type: "GET",
-	            url: require.toUrl('/weixin/ms/X5/saveShopingCart'),
+	            url: require.toUrl('/weixin/ms/X5/saveDonationInfo'),
 	            dataType: 'json',
 	            data:params,
 	            async: false,
 	            cache: false,
 	            success: successFunc,
 	            error: function(){
-	              throw justep.Error.create("加载数据失败");
+	              throw justep.Error.create("服务异常，捐赠失败！");
 	            }
 	        });		    
 	    }	
