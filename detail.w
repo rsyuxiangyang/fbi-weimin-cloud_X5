@@ -25,7 +25,7 @@
      <expr xid="default35">js:$model.transURL('./img/'+val('image'))</expr></calculate> </col> </rule>
   <column label="calcPriceText" name="calcPriceText" type="String" xid="default23"></column>
   <column label="calcImageURL" name="calcImageURL" type="String" xid="default24"></column></div>
-  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="qtyModelData" onCustomRefresh="qtyModelDataCustomRefresh" idColumn="fID"><column label="fID" name="fID" type="String" xid="xid7"></column>
+  <div component="$UI/system/components/justep/data/data" autoLoad="false" xid="qtyModelData" onCustomRefresh="qtyModelDataCustomRefresh" idColumn="fID" autoNew="true"><column label="fID" name="fID" type="String" xid="xid7"></column>
   <column label="qtyDataTemp" name="qtyDataTemp" type="String" xid="xid8"></column></div></div>  
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full x-card"> 
     <div class="x-panel-top"> 
@@ -33,7 +33,7 @@
         title="物品详情"> 
         <div class="x-titlebar-left text-muted"> 
           <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon"
-            label="搜索" xid="button6" icon="icon-chevron-left" onClick="backBtnClick"> 
+            label="搜索" xid="backBtn" icon="icon-chevron-left" onClick="backBtnClick"> 
             <i xid="i6" class="icon-chevron-left"/>  
             <span xid="span6">搜索</span> 
           </a> 
@@ -75,11 +75,18 @@
   </div>  
     <div class="x-panel-bottom" xid="bottom1">
    <div component="$UI/system/components/justep/row/row" class="x-row" xid="row4">
-   <div class="x-col x-col-25" xid="col11"><h5 xid="h53" class="pull-left" style="color:#00c160;"><![CDATA[捐赠数量:]]></h5></div>
-   <div class="x-col" xid="col12" style="padding-top:10px;"><input component="$UI/system/components/justep/input/input" xid="qtyInput" bind-ref="qtyModelData.ref('qtyDataTemp')" style="text-align:center;width:100%"></input></div>
-   <div class="x-col pull-right" xid="col13" style="margin-top:-7px;"><div component="$UI/system/components/justep/button/buttonGroup" class="btn-group btn-group-justified" tabbed="true" xid="buttonGroup2"> 
+   <div xid="col11" style="width:25%"><h5 xid="h53" class="pull-left" style="color:#00c160;font-size:16px"><![CDATA[捐赠数量:]]></h5></div>
+   <div xid="col12" style="padding-top:10px;width:40%;" class="text-center">
+  <div xid="div2" style="position:relative;bottom:4px"><a component="$UI/system/components/justep/button/button" class="btn btn-xs btn-only-icon" label="button" xid="reduceCountBtn" icon="icon-android-remove" onClick="reduceCountBtnClick" style="color:white;background-color:#00c160;">
+   <i xid="i3" class="icon-android-remove"></i>
+   <span xid="span3"></span></a><input component="$UI/system/components/justep/input/input" xid="qtyInput" bind-ref="qtyModelData.ref('qtyDataTemp')" style="text-align:center;width:50px"></input><a component="$UI/system/components/justep/button/button" class="btn btn-xs btn-only-icon" label="button" xid="addCountBtn" icon="icon-android-add" onClick="addCountBtnClick" style="color:white;background-color:#00c160;">
+   <i xid="i4" class="icon-android-add"></i>
+   <span xid="span4"></span></a></div>
+  
+  </div>
+   <div xid="col13" style="width:35%"><div component="$UI/system/components/justep/button/buttonGroup" class="btn-group btn-group-justified" tabbed="true" xid="buttonGroup2"> 
              
-          <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-sm btn-icon-left" label="捐赠" xid="shoppingCartBtn" icon="icon-ios7-cart-outline" onClick="shoppingCartBtnClick" style="background-color:#00c160;color:#FFFFFF;height:42px;"> 
+          <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-sm btn-icon-left" label="捐赠" xid="shoppingCartBtn" icon="icon-ios7-cart-outline" onClick="shoppingCartBtnClick" style="font-size:20px;background-color:#00c160;color:#FFFFFF;height:100%;"> 
               <i xid="i8" class="icon icon-ios7-cart-outline" />  
               <span xid="span7">捐赠</span> 
             </a></div></div></div></div></div> 

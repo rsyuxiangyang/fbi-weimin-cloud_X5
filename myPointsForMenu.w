@@ -14,17 +14,13 @@
    <column label="累计积分数" name="cumuPoints" type="String" xid="column1"></column>
    <column label="累计增加积分数" name="cumuIncPoints" type="String" xid="column2"></column>
    <column label="累计减少积分数" name="cumuRedPoints" type="String" xid="column3"></column></div></div>  
-  <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full x-card"> 
+  <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="loginBindDialog" src="$UI/takeout/registrationForMenu.w"></span>
+  <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="registrationCheckDialog" src="$UI/takeout/registrationCheckForMenu.w"></span><div component="$UI/system/components/justep/panel/panel" class="x-panel x-full x-card"> 
     <div class="x-panel-top"> 
       <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar"
         title="我的积分"> 
         <div class="x-titlebar-left text-muted"> 
-          <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon"
-            label="搜索" xid="backBtn" icon="icon-chevron-left" onClick="backBtnClick"> 
-            <i xid="i6" class="icon-chevron-left"/>  
-            <span xid="span6">搜索</span> 
-          </a> 
-        </div>  
+          </div>  
         <div class="x-titlebar-title">我的积分</div>  
         <div class="x-titlebar-right reverse"/> 
       </div> 

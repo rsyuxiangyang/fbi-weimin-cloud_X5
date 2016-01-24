@@ -5,7 +5,7 @@
   <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;left:243px;top:291px;"
     onLoad="modelLoad"> 
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
-      xid="gmGoodsInfoData" idColumn="pkid" confirmDelete="true" limit="15" confirmRefresh="false" onCustomRefresh="gmGoodsInfoDataCustomRefresh"> 
+      xid="gmGoodsInfoData" idColumn="pkid" confirmDelete="true" limit="150" confirmRefresh="false" onCustomRefresh="gmGoodsInfoDataCustomRefresh"> 
       <column label="pkid" name="pkid" type="String" xid="default1"></column>
   <column label="goodsId" name="goodsId" type="String" xid="default2"></column>
   <column label="goodsName" name="goodsName" type="String" xid="default3"></column>
@@ -37,7 +37,8 @@
   <column label="cardNoLastFour" name="cardNoLastFour" type="String" xid="xid8"></column>
   <column label="cumuPoints" name="cumuPoints" type="Decimal" xid="xid9"></column>
   <column label="cumuIncPoints" name="cumuIncPoints" type="Decimal" xid="xid10"></column>
-  <column label="cumuRedPoints" name="cumuRedPoints" type="Decimal" xid="xid11"></column></div>
+  <column label="cumuRedPoints" name="cumuRedPoints" type="Decimal" xid="xid11"></column>
+  <column label="status" name="status" type="String" xid="xid16"></column></div>
   <div component="$UI/system/components/justep/data/data" autoLoad="false" xid="ownContentData" idColumn="userId" autoNew="false" onCustomRefresh="ownContentDataCustomRefresh">
    <column label="用户ID" name="userId" type="String" xid="default15"></column>
   <column label="电话" name="tel" type="String" xid="default11"></column>
@@ -66,7 +67,7 @@
             </div>  
             <div class="x-scroll-content" xid="div5"> 
               <div component="$UI/system/components/justep/list/list" class="x-list x-cards"
-                xid="foodList" data="gmGoodsInfoData" limit="15">
+                xid="foodList" data="gmGoodsInfoData" limit="150">
                 <ul class="x-list-template list-group" xid="foodDetaillistTemplateUl1"> 
                   <li xid="li1" class="list-group-item"> 
                     <div class="media" xid="goodsDiv" bind-click="goodsDivClick"> 
@@ -192,7 +193,7 @@
      <span xid="span29">
       <span xid="span27" class="pull-left">
        <div xid="div23" class="text text-center">
-        <img src="" alt="" xid="image3" class="pull-left text-center" style="width:30px;position: absolute;top:25%;" bind-attr-src="$model.getImageUrl('./img/icons/gerenziliao.png')" height="30px"></img>
+        <img src="" alt="" xid="image3" class="pull-left text-center" style="width:30px;position: absolute;top:25%;" bind-attr-src="$model.getImageUrl('./img/icons/gerenxinxi.png')" height="30px"></img>
         <h4 xid="h43" class="pull-right fontColor2" style="position: absolute;top:20%;left:20%;"><![CDATA[个人信息]]></h4></div> </span> </span> </div> </div> 
   </div></div> 
       </div> 

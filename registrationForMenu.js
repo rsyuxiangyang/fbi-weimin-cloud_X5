@@ -33,6 +33,10 @@ define(function(require) {
 	Model.prototype.loginBindReceiverReceive = function(event) {
 		this._loginBind_uid3rd = event.data.uid3rdPara;
 		this._loginBind_displayName = event.data.displayNamePara;
+		var menuType= event.data.menuTypePara;
+		if("myPointsMenu"==menuType||"myRegistrationMenu"==menuType){
+			 justep.Util.hint('您还不是会员，注册会员后方可查看相关信息！');
+		}
 	};
 
 	Model.prototype.telInputChange = function(event) {

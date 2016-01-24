@@ -20,15 +20,12 @@ define(function(require) {
 		this._uid3rd = "";
 		this._goodsId ="";
 		this._state = "";
+		this._deviceType = ""; 
 	};
 
 	//返回上一页
 	Model.prototype.backBtnClick = function(event) {
-		if(this._state=='0'){		
-			this.comp('goodsDetailReceiver').windowEnsure('0');
-		}else{
-			this.comp('goodsDetailReceiver').windowEnsure('1');
-		}
+		this.comp('goodsDetailReceiver').windowCancel();
 	};
 
 	
@@ -40,20 +37,36 @@ define(function(require) {
 	Model.prototype.goodsDetailReceiverReceive = function(event){			
 		this._uid3rd =event.data.uid3rd; 	
 		this._goodsId =event.data.goodsId; 
-//		alert(this._uid3rd);
-//		alert(this._goodsId);
-		this._state=event.data.state;	
-//		alert("this._state:"+this._state);
-
-//		this.comp("qtyInput").value=1;
+		this._state=event.data.state;
+		this._deviceType=event.data.deviceType;	
 		
 		var gmGoodsDtlInfoData = this.comp("gmGoodsDtlInfoData");
-		gmGoodsDtlInfoData.refreshData();
-		if(this._state=='0'){
-			$(this.getElementByXid("shoppingCartBtn")).attr("disabled", true);		
-			justep.Util.hint('您当前还不是会员，无法操作，请注册成为会员！');	
-		}else{	
-		}
+		gmGoodsDtlInfoData.refreshData();		
+		/*var qtyModelData = this.comp("qtyModelData");
+		qtyModelData.refreshData();*/
+		this.comp('qtyInput').val(1);	
+		if(this._deviceType!='wx'){
+			justep.Util.hint("请关注微信公众号'WEI民公益'进行操作！");
+			$(this.getElementByXid("shoppingCartBtn")).attr("disabled", true);	
+			$(this.getElementByXid("qtyInput")).attr("disabled", true);	
+			$(this.getElementByXid("reduceCountBtn")).attr("disabled", true);	
+			$(this.getElementByXid("addCountBtn")).attr("disabled", true);	
+		}else{
+//			alert("detail:"+this._state);
+			if(this._state=='0'){	
+				justep.Util.hint('您当前还不是会员，无法操作，请注册成为会员！');					
+				$(this.getElementByXid("shoppingCartBtn")).attr("disabled", true);	
+				$(this.getElementByXid("qtyInput")).attr("disabled", true);	
+				$(this.getElementByXid("reduceCountBtn")).attr("disabled", true);	
+				$(this.getElementByXid("addCountBtn")).attr("disabled", true);	
+			}else if(this._state=='2'){	
+				justep.Util.hint("无法操作,系统正在审核您的注册信息，结果会以微信消息形式通知您！");	
+				$(this.getElementByXid("shoppingCartBtn")).attr("disabled", true);	
+				$(this.getElementByXid("qtyInput")).attr("disabled", true);	
+				$(this.getElementByXid("reduceCountBtn")).attr("disabled", true);	
+				$(this.getElementByXid("addCountBtn")).attr("disabled", true);				
+			}
+		}		
 	};
 	
 	Model.prototype.gmGoodsDtlInfoDataCustomRefresh = function(event){
@@ -65,9 +78,9 @@ define(function(require) {
 		var successFunc = function(resultData) {
 			var retResult = resultData["result"];
 			if ("nodata" == retResult) {
-				justep.Error.create("加载数据失败！");
+				justep.Util.hint("加载数据失败！");
 			}else if("error"==retResult){
-				justep.Error.create("加载数据失败！");	
+				justep.Util.hint("加载数据失败！");	
 			}else{
 				var append = event.options && event.options.append;
 				gmGoodsDtlInfoData.loadData(resultData, append);
@@ -134,8 +147,7 @@ define(function(require) {
 	
 	
 	
-	Model.prototype.qtyModelDataCustomRefresh = function(event){
-	
+	Model.prototype.qtyModelDataCustomRefresh = function(event){	
 		var qtyModelData = event.source;
 		qtyModelData.newData({
 						index : 0,
@@ -145,6 +157,22 @@ define(function(require) {
 						} ]
 					});
 
+	};
+	
+	
+	
+	Model.prototype.addCountBtnClick = function(event){
+		var row =this.comp('qtyInput');	
+		console.log(row);
+		row.val(parseInt(row.val()) + 1);
+	};
+	
+	
+	
+	Model.prototype.reduceCountBtnClick = function(event){
+		var row =this.comp('qtyInput');	
+		console.log(row);
+		row.val((parseInt(row.val()) > 0) ? parseInt(row.val()) - 1 : 0);
 	};
 	
 	

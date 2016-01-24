@@ -6,9 +6,11 @@ define(function(require){
 		this.callParent();
 	};
 
-	//图片路径转换
-	Model.prototype.getImageUrl = function(url){
-		return require.toUrl(url);
+	Model.prototype.button1Click = function(event){
+//		justep.Portal.closeWindow();
+		window.close();
+
 	};
+
 	return Model;
 });

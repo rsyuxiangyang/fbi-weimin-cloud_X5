@@ -54,8 +54,8 @@ define(function(require) {
 		} else if (weixinCode !== "") {
 			this._deviceType = "wx";
 			if (justep.Browser.isWeChat) {
-//				this.wxApi = new navigator.WxApi("wxb67cf3f14d6861e4");
-				 this.wxApi = new navigator.WxApi("wx3267506118bc9677");
+//				 this.wxApi = new navigator.WxApi("wxb67cf3f14d6861e4");
+				this.wxApi = new navigator.WxApi("wx3267506118bc9677");
 			}
 
 			$.getJSON("/baas/weixin/userinfo?code=" + weixinCode, function(weixinUser) {
@@ -65,8 +65,6 @@ define(function(require) {
 				self._userPhotoURL = weixinUser.headimgurl;
 				self.initBpCustsData(weixinUser.openid);// 有可能是异步
 			});
-		}else{
-//			this.initBpCustsData('');
 		}
 	};
 
@@ -78,14 +76,14 @@ define(function(require) {
 		};
 		var successFunc = function(resultData) {
 			var retResult = resultData["result"];
-			if ("unSupport" == retResult) {	
-				self._state = '0';		
-			}else if ("nodata" == retResult) {
+			if ("unSupport" == retResult || "nodata" == retResult || "failBind" == retResult) {
 				self._state = '0';
-			}else if ("error" == retResult) {
+			} else if ("error" == retResult) {
 				self._state = '0';
-				throw justep.Error.create("加载用户数据失败");
-			}else{
+				justep.Util.hint("加载用户数据失败");
+			} else if ("preBind" == retResult) {
+				self._state = '2';
+			} else {
 				var append = event.options && event.options.append;
 				bpCustsData.loadData(resultData, append);
 				self._state = '1';
@@ -106,29 +104,43 @@ define(function(require) {
 	};
 
 	Model.prototype.orderBtnClick = function(event) {
-		if (this._state == '0') {
-			this.comp('loginBindDialog').open({
-				data : {
-					uid3rdPara : this._userID,
-					displayNamePara:this._userDefaultName
-				}
-			});
+		if (this._deviceType != 'wx') {
+			justep.Util.hint("请关注微信公众号'WEI民公益'进行操作！");
 		} else {
-
+			if (this._state == '0') {
+				this.comp('loginBindDialog').open({
+					data : {
+						uid3rdPara : this._userID,
+						displayNamePara : this._userDefaultName
+					}
+				});
+			} else if (this._state == '2') {
+				this.comp('registrationCheckDialog').open();
+			} else {
+				this.comp("contents").to("serviceContent");
+			}
 		}
 	};
 
 	Model.prototype.ownBtnClick = function(event) {
-		if (this._state == '0') {
-			this.comp('loginBindDialog').open({
-				data : {
-					uid3rdPara : this._userID,
-					displayNamePara:this._userDefaultName
-				}
-			});
+		if (this._deviceType != 'wx') {
+			justep.Util.hint("请关注微信公众号'WEI民公益'进行操作！");
 		} else {
-			this.loadOwnContentData();
+			if (this._state == '0') {
+				this.comp('loginBindDialog').open({
+					data : {
+						uid3rdPara : this._userID,
+						displayNamePara : this._userDefaultName
+					}
+				});
+			} else if (this._state == '2') {
+				this.comp('registrationCheckDialog').open();
+			} else {
+				this.comp("contents").to("ownContent");
+				this.loadOwnContentData();
+			}
 		}
+
 	};
 
 	Model.prototype.loadOwnContentData = function() {
@@ -155,9 +167,9 @@ define(function(require) {
 		var successFunc = function(resultData) {
 			var retResult = resultData["result"];
 			if ("nodata" == retResult) {
-			}else if("error"==retResult){
-				justep.Error.create("加载数据失败！");	
-			}else{
+			} else if ("error" == retResult) {
+				justep.Util.hint("加载数据失败！");
+			} else {
 				var append = event.options && event.options.append;
 				data.loadData(resultData, append);
 			}
@@ -176,19 +188,233 @@ define(function(require) {
 		});
 	};
 
+	Model.prototype.jifenRowClick = function(event) {
+		if (this._state == '0') {
+			this.comp('loginBindDialog').open({
+				data : {
+					uid3rdPara : this._userID
+				}
+			});
+		} else if (this._state == '1') {
+			this.comp('myPointsDialog').open({
+				data : {
+					uid3rdPara : this._userID
+				}
+			});
+		} else if (this._state == '2') {
+			this.comp('registrationCheckDialog').open();
+		}
+	};
+
+	Model.prototype.xingjiRowClick = function(event) {
+		justep.Util.hint('敬请期待！');
+	};
+
+	Model.prototype.aixinjuanzengRowClick = function(event) {
+		this.comp("contents").to("goodsContent");
+	};
+
+	Model.prototype.huiyuanzhuceRowClick = function(event) {
+		if (this._state == '0') {
+			this.comp('loginBindDialog').open({
+				data : {
+					uid3rdPara : this._userID
+				}
+			});
+		} else if (this._state == '1') {
+			justep.Util.hint('您已经是会员！');
+		} else if (this._state == '2') {
+			this.comp('registrationCheckDialog').open();
+		}
+	};
+
+	Model.prototype.gerenxinxiRowClick = function(event) {
+		if (this._state == '0') {
+			this.comp('loginBindDialog').open({
+				data : {
+					uid3rdPara : this._userID
+				}
+			});
+		} else if (this._state == '1') {
+			justep.Util.hint('敬请期待！');
+		} else if (this._state == '2') {
+			this.comp('registrationCheckDialog').open();
+		}
+	};
+
+	Model.prototype.goodsDivClick = function(event) {
+		var row = event.bindingContext.$object;
+		console.log(row);
+		var goodsIdTemp = row.val("goodsId");
+		this.comp('goodsDetailDialog').open({
+			data : {
+				uid3rd : this._userID,
+				goodsId : goodsIdTemp,
+				state : this._state,
+				deviceType : this._deviceType
+			}
+		});
+
+	};
+
+	Model.prototype.weiminfengcaiRowClick = function(event) {
+		this.comp('fencaiDialog').open();
+	};
+
+	Model.prototype.rongyuRowClick = function(event) {
+		justep.Util.hint('敬请期待！');
+	};
+
+	Model.prototype.personInfoRowClick = function(event) {
+		justep.Util.hint('敬请期待！');
+
+	};
+
+	Model.prototype.myDonationRowClick = function(event) {
+		if (this._state == '0') {
+			this.comp('loginBindDialog').open({
+				data : {
+					uid3rdPara : this._userID
+				}
+			});
+		} else if (this._state == '1') {
+			this.comp('myDonationDialog').open({
+				data : {
+					uid3rdPara : this._userID
+				}
+			});
+		} else if (this._state == '2') {
+			this.comp('registrationCheckDialog').open();
+		}
+
+	};
+
+	Model.prototype.jifenColClick = function(event) {
+		if (this._state == '0') {
+			this.comp('loginBindDialog').open({
+				data : {
+					uid3rdPara : this._userID
+				}
+			});
+		} else if (this._state == '1') {
+			this.comp('myPointsDialog').open({
+				data : {
+					uid3rdPara : this._userID
+				}
+			});
+		} else if (this._state == '2') {
+			this.comp('registrationCheckDialog').open();
+		}
+	};
+
+	Model.prototype.row3Click = function(event) {
+		if (this._state == '0') {
+			this.comp('loginBindDialog').open({
+				data : {
+					uid3rdPara : this._userID
+				}
+			});
+		} else if (this._state == '1') {
+			this.comp('myDonationDialog').open({
+				data : {
+					uid3rdPara : this._userID
+				}
+			});
+		} else if (this._state == '2') {
+			this.comp('registrationCheckDialog').open();
+		}
+
+	};
+
+	Model.prototype.contentsActiveChange = function(event) {
+		switch (event.to) {
+		case 1:
+			if (this._deviceType != 'wx') {
+				justep.Util.hint("请关注微信公众号'WEI民公益'进行操作！");
+			} else {
+				if (this._state == '0') {
+					this.comp('loginBindDialog').open({
+						data : {
+							uid3rdPara : this._userID,
+							displayNamePara : this._userDefaultName
+						}
+					});
+				} else if (this._state == '2') {
+					this.comp('registrationCheckDialog').open();
+				} else {
+
+				}
+			}
+			break;
+		case 2:
+			if (this._deviceType != 'wx') {
+				justep.Util.hint("请关注微信公众号'WEI民公益'进行操作！");
+			} else {
+				if (this._state == '0') {
+					this.comp('loginBindDialog').open({
+						data : {
+							uid3rdPara : this._userID,
+							displayNamePara : this._userDefaultName
+						}
+					});
+				} else if (this._state == '2') {
+					this.comp('registrationCheckDialog').open();
+				} else {
+					this.loadOwnContentData();
+				}
+			}
+			break;
+		}
+	};
+
+	Model.prototype.registrationCheckDialogReceive = function(event) {
+		this._state = event.data;
+		this.comp("contents").to("goodsContent");
+		var bpCustsData = this.comp("bpCustsData");
+		bpCustsData.refreshData();
+	};
+
+	Model.prototype.loginBindDialogReceive = function(event) {
+		this._state = event.data;
+		if (this._state == '2') {
+			justep.Util.hint("预注册成功,系统审核结果会以微信消息形式通知您！");
+		}
+		this.comp("contents").to("goodsContent");
+		var bpCustsData = this.comp("bpCustsData");
+		bpCustsData.refreshData();
+//		alert(this._state);
+	};
+
+	Model.prototype.goodsDetailDialogReceive = function(event) {
+		this.comp("contents").to("goodsContent");
+		var bpCustsData = this.comp("bpCustsData");
+		bpCustsData.refreshData();
+	};
+
 	Model.prototype.bpCustsDataCustomRefresh = function(event) {
+		var self = this;
 		var bpCustsData = event.source;
 		var params = {
-//			"columns" : Baas.getDataColumns(bpCustsData),
 			"uid3rd" : this._userID
 		};
 		var successFunc = function(resultData) {
-			var append = event.options && event.options.append;
-			bpCustsData.loadData(resultData, append);
+			var retResult = resultData["result"];
+			if ("unSupport" == retResult || "nodata" == retResult || "failBind" == retResult) {
+				self._state = '0';
+			} else if ("error" == retResult) {
+				self._state = '0';
+				throw justep.Util.hint("加载用户数据失败");
+			} else if ("preBind" == retResult) {
+				self._state = '2';
+			} else {
+				var append = event.options && event.options.append;
+				bpCustsData.loadData(resultData, append);
+				self._state = '1';
+			}
 		};
 		$.ajax({
 			type : "GET",
-			url : require.toUrl('/weixin/ms/X5/checkBind'),
+			url : require.toUrl('/weixin/ms/X5/getBindCust'),
 			dataType : 'json',
 			data : params,
 			async : false,
@@ -210,9 +436,9 @@ define(function(require) {
 			var retResult = resultData["result"];
 			if ("nodata" == retResult) {
 				justep.Error.create("加载数据失败！");
-			}else if("error"==retResult){
-				justep.Error.create("加载数据失败！");	
-			}else{
+			} else if ("error" == retResult) {
+				justep.Error.create("加载数据失败！");
+			} else {
 				var append = event.options && event.options.append;
 				ownContentData.loadData(resultData, append);
 			}
@@ -231,191 +457,5 @@ define(function(require) {
 		});
 
 	};
-
-	Model.prototype.jifenRowClick = function(event) {
-//		var bpCustsData = this.comp("bpCustsData");
-		var uid3rdTemp = this._userID;
-		if (this._state == '0') {
-			this.comp('loginBindDialog').open({
-				data : {
-					uid3rdPara : uid3rdTemp,
-					displayNamePara:this._userDefaultName
-				}
-			});
-		} else {
-			this.comp('myPointsDialog').open({
-				data : {
-					uid3rdPara : uid3rdTemp
-				}
-			});
-		}
-	};
-
-	Model.prototype.xingjiRowClick = function(event) {
-		var uid3rdTemp = this._userID;
-		justep.Util.hint('敬请期待！');
-	};
-
-	Model.prototype.aixinjuanzengRowClick = function(event) {
-		this.comp("contents").to("goodsContent");
-	};
-
-	Model.prototype.huiyuanzhuceRowClick = function(event) {
-//		var bpCustsData = this.comp("bpCustsData");
-		var uid3rdTemp = this._userID;
-
-		if (this._state == '0') {
-			this.comp('loginBindDialog').open({
-				data : {
-					uid3rdPara : uid3rdTemp,
-					displayNamePara:this._userDefaultName
-				}
-			});
-		} else {
-			justep.Util.hint('您已经是会员！');
-		}
-	};
-
-	Model.prototype.gerenxinxiRowClick = function(event) {
-//		var bpCustsData = this.comp("bpCustsData");
-		var uid3rdTemp = this._userID;
-
-		if (this._state == '0') {
-			this.comp('loginBindDialog').open({
-				data : {
-					uid3rdPara : uid3rdTemp,
-					displayNamePara:this._userDefaultName
-				}
-			});
-		} else {
-			justep.Util.hint('敬请期待！');
-		}
-	};
-
-	Model.prototype.goodsDivClick = function(event) {
-		var row = event.bindingContext.$object;
-		console.log(row);
-
-		var goodsIdTemp = row.val("goodsId");
-
-		this.comp('goodsDetailDialog').open({
-			data : {
-				uid3rd : this._userID,
-				goodsId : goodsIdTemp,
-				state:this._state
-			}
-		});
-
-	};
-
-	Model.prototype.weiminfengcaiRowClick = function(event) {
-		this.comp('fencaiDialog').open();
-	};
-
-	Model.prototype.loginBindDialogReceive = function(event) {
-		this._state = event.data;
-		var bpCustsData = this.comp("bpCustsData");
-		bpCustsData.refreshData();
-		this.comp("contents").to("goodsContent");
-	};
-
-	Model.prototype.rongyuRowClick = function(event){
-		justep.Util.hint('敬请期待！');
-	};
-
-	Model.prototype.personInfoRowClick = function(event){
-		justep.Util.hint('敬请期待！');
-
-	};
-
-	Model.prototype.myDonationRowClick = function(event){
-//		var bpCustsData = this.comp("bpCustsData");
-		var uid3rdTemp = this._userID;
-		if (this._state == '0') {
-			this.comp('loginBindDialog').open({
-				data : {
-					uid3rdPara : uid3rdTemp,
-					displayNamePara:this._userDefaultName
-				}
-			});
-		} else {
-			this.comp('myDonationDialog').open({
-				data : {
-					uid3rdPara : uid3rdTemp
-				}
-			});
-		}
-
-	};
-
-
-	Model.prototype.jifenColClick = function(event){
-		var uid3rdTemp = this._userID;
-		if (this._state == '0') {
-			this.comp('loginBindDialog').open({
-				data : {
-					uid3rdPara : uid3rdTemp,
-					displayNamePara:this._userDefaultName
-				}
-			});
-		} else {
-			this.comp('myPointsDialog').open({
-				data : {
-					uid3rdPara : uid3rdTemp
-				}
-			});
-		}
-
-	};
-
-	Model.prototype.row3Click = function(event){
-		var uid3rdTemp = this._userID;
-		if (this._state == '0') {
-			this.comp('loginBindDialog').open({
-				data : {
-					uid3rdPara : uid3rdTemp,
-					displayNamePara:this._userDefaultName
-				}
-			});
-		} else {
-			this.comp('myDonationDialog').open({
-				data : {
-					uid3rdPara : uid3rdTemp
-				}
-			});
-		}
-
-	};
-	
-
-	Model.prototype.contentsActiveChange = function(event){
-		switch (event.to) {
-		case 1:
-			if (this._state == '0') {
-				this.comp('loginBindDialog').open({
-					data : {
-						uid3rdPara : this._userID,
-						displayNamePara:this._userDefaultName
-					}
-				});
-			} else {
-	
-			}
-			break;
-		case 2:
-			if (this._state == '0') {
-				this.comp('loginBindDialog').open({
-					data : {
-						uid3rdPara : this._userID,
-						displayNamePara:this._userDefaultName
-					}
-				});
-			} else {
-				this.loadOwnContentData();
-			}
-			break;
-		}
-	};
-
 	return Model;
 });

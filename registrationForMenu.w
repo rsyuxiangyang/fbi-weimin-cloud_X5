@@ -11,9 +11,7 @@
    <div class="x-panel-top" xid="top1">
    <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar" title="会员注册" xid="titleBar1">
     <div class="x-titlebar-left text-muted" xid="div2">
-     <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon" label="搜索" xid="backBtn" icon="icon-chevron-left" onClick="backBtnClick">
-      <i xid="i6" class="icon-chevron-left"></i>
-      <span xid="span6">搜索</span></a> </div> 
+     </div> 
     <div class="x-titlebar-title" xid="div5">会员注册</div>
     <div class="x-titlebar-right reverse" xid="div6"></div></div> </div><div class="x-panel-content x-cards"><div class="panel panel-default x-card" xid="div1">
    

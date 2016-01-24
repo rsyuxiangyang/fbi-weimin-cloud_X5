@@ -7,9 +7,7 @@
    <div class="x-panel-top" xid="top1">
    <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar" title="会员注册" xid="titleBar1">
     <div class="x-titlebar-left text-muted" xid="div2">
-     <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon" label="搜索" xid="backBtn" icon="icon-chevron-left" onClick="backBtnClick">
-      <i xid="i6" class="icon-chevron-left"></i>
-      <span xid="span6">搜索</span></a> </div> 
+     </div> 
     <div class="x-titlebar-title" xid="div5">会员注册</div>
     <div class="x-titlebar-right reverse" xid="div6"></div></div> </div><div class="x-panel-content x-cards"><div xid="div7"><h1 xid="h11" style="color:white"><![CDATA[系统正在审核您的注册信息,审核结果会以微信信息的形式通知您,请随时关注！]]></h1></div></div>
    </div></div>
