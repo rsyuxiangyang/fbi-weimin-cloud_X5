@@ -38,7 +38,7 @@
    <i class="x-pull-down-img glyphicon x-icon-pull-down" xid="i1"></i>
    <span class="x-pull-down-label" xid="span2">下拉刷新...</span></div><div class="x-scroll-content" xid="div5">
     <div xid="div1" style="z-index:2;margin:20px auto;position:absolute;height:122px;top:0;width:80%;">
-   <h4 xid="h47" class="fontColor" style="position:absolute;height:88px;width:114px;top:50px;left:50px;"><![CDATA[积分余额]]></h4>
+   <h4 xid="h47" class="fontColor" style="position:absolute;height:88px;width:114px;top:50px;left:50px;"><![CDATA[可用积分]]></h4>
    <img src="" alt="" xid="image6" class="text-center" style="position:absolute;width:30px;left:15px;top:120px;" bind-attr-src="$model.getImageUrl('./img/icons/iconfont-wodejifenw.png')" height="30px"></img>
    <h1 xid="h12" class="fontColor" style="position:absolute;height:51px;width:80px;top:95px;left:50px;" bind-text="pointsData.ref('cumuPoints')"><![CDATA[]]></h1></div><div xid="div8" style="z-index:2;margin:20px auto;position:absolute;height:122px;top:0;width:80%;right:0px">
    <h4 xid="h41" class="fontColor" style="position:absolute;height:88px;width:114px;right:25px;top:50px;"><![CDATA[累计已捐积分]]></h4>
@@ -46,7 +46,7 @@
    <h1 xid="h11" class="fontColor" style="position:absolute;height:51px;width:80px;right:60px;top:95px;" bind-text="pointsData.ref('cumuRedPoints')"></h1></div><div xid="div2" class="text-center" style="z-index:2;background-color:#00c160;height:150px;"></div><div component="$UI/system/components/bootstrap/row/row" class="row clearfix center-block  table-bordered x-fill" xid="jifenRow" style="width:100%;background-color:#E8E8E8">
    <div class="col col-xs-12" xid="col10" style="height:40px;background-color:#fafafa;">
     <span xid="span15">
-     <h5 xid="h51" style="position:absolute;left:4%;top:7%;color:#C0C0C0;"><![CDATA[卡累计积分]]></h5></span> </div> </div><div component="$UI/system/components/justep/list/list" class="x-list x-cards" xid="pointsList" data="pointsDtlData" limit="8" autoLoad="true">
+     <h5 xid="h51" style="position:absolute;left:4%;top:7%;color:#C0C0C0;"><![CDATA[卡共产生积分]]></h5></span> </div> </div><div component="$UI/system/components/justep/list/list" class="x-list x-cards" xid="pointsList" data="pointsDtlData" limit="8" autoLoad="true">
      <ul class="x-list-template list-group" xid="pointsDetaillistTemplateUl1">
       <li xid="li1" class="list-group-item">
        <div class="media" xid="pointsDiv">
@@ -62,7 +62,7 @@
   <div component="$UI/system/components/justep/row/row" class="x-row" xid="row8">
    
    <div class="x-col " xid="col23" style="color:#6DCF4B">
-  <label xid="label3" dir="rtl" class="pull-left"><![CDATA[:共累计积分]]></label><div component="$UI/system/components/justep/output/output" class="fontColor1 x-output list-group-item-text" xid="output14" style="height:auto;position:relative;bottom:3px" bind-ref="ref('cumuIncPoints')"></div></div>
+  <label xid="label3" dir="rtl" class="pull-left"><![CDATA[:共产生积分]]></label><div component="$UI/system/components/justep/output/output" class="fontColor1 x-output list-group-item-text" xid="output14" style="height:auto;position:relative;bottom:3px" bind-ref="ref('cumuIncPoints')"></div></div>
   </div></div>
   </div> </li> </ul> </div>
   <div xid="nodataDiv" class="text-center" style="display:none">

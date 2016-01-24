@@ -53,11 +53,7 @@
       <h5 xid="h56" class="pull-left" style="color:black"><![CDATA[捐赠时间:]]></h5><div component="$UI/system/components/justep/output/output" class="x-output list-group-item-text" xid="output5" bind-ref="ref('createTime')" style="position:relative;top:5px"></div>
   </div> 
      </div> 
-  <div component="$UI/system/components/bootstrap/row/row" class="row" xid="row2">
-   
-   <div class="col col-xs-12 " xid="col3">
-    <h5 xid="h52" class="pull-left text-right" style="color:black"><![CDATA[流水号:]]></h5>
-    <div component="$UI/system/components/justep/output/output" class="x-output list-group-item-text" xid="output2" bind-ref="ref('billNo')" style="position:relative;top:5px"></div></div> </div></div> </div></li> </ul> </div>
+  </div> </div></li> </ul> </div>
   <div xid="nodataDiv" class="text-center" style="display:none">
    <img src="" alt="" xid="image2" class="image-wall img1 img-responsive" style="width:100%;background-color:#E8E8E8" bind-attr-src="$model.getImageUrl('./img/donationNodata.png')"></img></div>
   
