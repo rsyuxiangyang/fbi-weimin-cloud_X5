@@ -37,6 +37,8 @@ define(function(require) {
 		if("myPointsMenu"==menuType||"myRegistrationMenu"==menuType){
 			 justep.Util.hint('您还不是会员，注册会员后方可查看相关信息！');
 		}
+		$(this.getElementByXid("checkButton")).attr("disabled", true);
+		$(this.getElementByXid("saveUserBtn")).attr("disabled", true);	
 	};
 
 	Model.prototype.telInputChange = function(event) {
@@ -172,6 +174,12 @@ define(function(require) {
 						} ]
 					});
 
+	};
+
+
+
+	Model.prototype.input5Change = function(event){
+		$(this.getElementByXid("saveUserBtn")).attr("disabled", false);	
 	};
 
 

@@ -29,7 +29,7 @@
       <label class="col-xs-3 control-label" style="word-spacing:20px;padding-top: 12px;" xid="controlLabel3"><![CDATA[验证码]]></label>
       <div class="col-xs-9" xid="col3">
        <div class="input-group" component="$UI/system/components/bootstrap/inputGroup/inputGroup" xid="inputGroup2">
-        <input type="text" class="form-control" component="$UI/system/components/justep/input/input" xid="input5" bind-ref="registerData.ref('checkNum')" placeHolder="请输入验证码"></input>
+        <input type="text" class="form-control" component="$UI/system/components/justep/input/input" xid="input5" bind-ref="registerData.ref('checkNum')" placeHolder="请输入验证码" onChange="input5Change"></input>
         <div class="input-group-btn" xid="div14">
          
   <a component="$UI/system/components/justep/button/button" class="btn btn-default" label="获取验证码" xid="checkButton" onClick="checkButtonClick" style="width:95px;">

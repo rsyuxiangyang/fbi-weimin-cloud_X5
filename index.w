@@ -32,13 +32,14 @@
   <column label="userId" name="userId" type="String" xid="column1"></column>
   <column label="custNo" name="custNo" type="String" xid="column4"></column>
   <column label="custName" name="custName" type="String" xid="column3"></column>
-  <column label="state" name="state" type="String" xid="column2"></column>
+  <column label="bindState" name="bindState" type="String" xid="column2"></column>
   <column label="tel" name="tel" type="String" xid="xid1"></column>
   <column label="cardNoLastFour" name="cardNoLastFour" type="String" xid="xid8"></column>
   <column label="cumuPoints" name="cumuPoints" type="Decimal" xid="xid9"></column>
   <column label="cumuIncPoints" name="cumuIncPoints" type="Decimal" xid="xid10"></column>
   <column label="cumuRedPoints" name="cumuRedPoints" type="Decimal" xid="xid11"></column>
-  <column label="status" name="status" type="String" xid="xid16"></column></div>
+  <column label="isValid" name="isValid" type="String" xid="xid16"></column>
+  <column label="displayName" name="displayName" type="String" xid="xid17"></column></div>
   <div component="$UI/system/components/justep/data/data" autoLoad="false" xid="ownContentData" idColumn="userId" autoNew="false" onCustomRefresh="ownContentDataCustomRefresh">
    <column label="用户ID" name="userId" type="String" xid="default15"></column>
   <column label="电话" name="tel" type="String" xid="default11"></column>
@@ -53,7 +54,7 @@
   <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="myPointsDialog" src="$UI/takeout/myPoints.w" style="left:9px;top:10px;" routable="true"></span>
   <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="registrationCheckDialog" src="$UI/takeout/registrationCheck.w" routable="true"></span>
   <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="fencaiDialog" src="$UI/takeout/weiDemeanour.w" routable="true"></span>
-  <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="myDonationDialog" routable="true" src="$UI/takeout/myDonation.w"></span><div component="$UI/system/components/justep/panel/panel" class="x-panel x-full"
+  <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="myDonationDialog" routable="true" src="$UI/takeout/myDonation.w"></span><span component="$UI/system/components/justep/windowDialog/windowDialog" xid="personInfoDialog" src="$UI/takeout/personInfo.w" routable="true"></span><div component="$UI/system/components/justep/panel/panel" class="x-panel x-full"
     xid="panel1"> 
     <div class="x-panel-content" xid="content1"> 
       <div component="$UI/system/components/justep/contents/contents" class="x-contents x-full"
@@ -148,28 +149,23 @@
             <img alt="" xid="photoImage" height="100%" style="width:100%;" /> 
           <h4 xid="h41" class="text-center " style="color:white;display:none" bind-text="ownContentData.ref('custName')"><![CDATA[]]></h4></div><div xid="div2" class="text-center"><img src="" alt="" xid="image2" class="image-wall img1 img-responsive" style="width:100%;" bind-attr-src="$model.getImageUrl('./img/bg.jpg')"></img></div>  
           <div xid="div1"><div component="$UI/system/components/bootstrap/row/row" class="row clearfix center-block  table-bordered x-fill" xid="row2" style="width:100%;">
-   <div class="col col-xs-4 col-spliter-right" xid="col1"><div xid="div3" class="text text-center">
-   <img src="" alt="" xid="image11" class="pull-left text-center" style="width:20px;position: absolute;top:10%;left:15%" bind-attr-src="$model.getImageUrl('./img/icons/youhuiquan.png')" height="20px"></img><h5 xid="h51" class="fontColor2"><![CDATA[优惠券]]></h5>
-  </div>
-  <div xid="div7" class="text text-center">
-   <h5 xid="h52" class="fontColor3"><![CDATA[敬请期待]]></h5></div></div>
-   <div class="col col-xs-4 col-spliter-right" xid="jifenCol" bind-click="jifenColClick"><div xid="div12" class="text text-center">
-   <img src="" alt="" xid="image9" class="pull-left text-center" style="width:20px;position: absolute;top:10%;left:15%" bind-attr-src="$model.getImageUrl('./img/icons/wodejifen.png')" height="20px"></img><h5 xid="h54" class="fontColor2"><![CDATA[积分]]></h5>
+   <div class="col col-xs-6 col-spliter-right" xid="jifenCol"><div xid="div12" class="text text-center">
+   <img src="" alt="" xid="image9" class="pull-left text-center" style="width:20px;position: absolute;top:10%;left:15%" bind-attr-src="$model.getImageUrl('./img/icons/wodejifen.png')" height="20px"></img><h5 xid="h54" class="fontColor2"><![CDATA[可用积分]]></h5>
   </div>
   <div xid="div11" class="text text-center">
-   <h5 xid="h53" class="fontColor3" bind-text="ownContentData.ref('points')"><![CDATA[]]></h5></div></div>
-   <div class="col col-xs-4" xid="col3"><div xid="div15" class="text text-center">
-   <img src="" alt="" xid="image10" class="pull-left text-center" style="width:20px;position: absolute;top:10%;left:15%" bind-attr-src="$model.getImageUrl('./img/icons/xingji.png')" height="20px"></img><h5 xid="h56" class="fontColor2"><![CDATA[星级]]></h5>
+   <h5 xid="h53" class="fontColor3" bind-text="bpCustsData.ref('cumuPoints')"><![CDATA[]]></h5></div></div>
+   <div class="col col-xs-6" xid="col3"><div xid="div15" class="text text-center">
+   <img src="" alt="" xid="image10" class="pull-left text-center" style="width:20px;position: absolute;top:10%;left:15%" bind-attr-src="$model.getImageUrl('./img/icons/wodejuanzeng.png')" height="20px"></img><h5 xid="h56" class="fontColor2"><![CDATA[已捐赠积分]]></h5>
   </div>
   <div xid="div13" class="text text-center">
-   <h5 xid="h55" class="fontColor3">敬请期待</h5></div></div></div>
+   <h5 xid="h55" class="fontColor3" bind-text="bpCustsData.ref('cumuRedPoints')"><![CDATA[]]></h5></div></div></div>
   <div component="$UI/system/components/bootstrap/row/row" class="row clearfix center-block  table-bordered x-fill" xid="row3" style="width:100%;" bind-click="row3Click">
    <div class="col col-xs-12" xid="col4"><span xid="span21">
    <span xid="span20" class="pull-left">
     <div xid="div20" class="text text-left">
-     <h5 xid="h59" class="fontColor2" bind-text="ownContentData.ref('tel')"><![CDATA[]]></h5></div> 
+     <h5 xid="h59" class="fontColor2" bind-text="bpCustsData.ref('displayName')"><![CDATA[]]></h5></div> 
     <div xid="div21" class="text text-left">
-     <h5 xid="h510" class="fontColor3"><![CDATA[点击查看会员，历史捐赠记录]]></h5></div> </span> 
+     <h5 xid="h510" class="fontColor3"><![CDATA[点击查看会员个人信息]]></h5></div> </span> 
    <span xid="span18" class="pull-right">
     <div xid="div22" class="text text-center">
      <img src="" alt="" xid="image4" class="text-center" style="width:30px;position: absolute;top:25%;right:5%" bind-attr-src="$model.getImageUrl('./img/icons/erweima.png')" height="30px"></img></div> </span> </span></div>
@@ -187,14 +183,14 @@
     <span xid="span30">
      <span xid="span26" class="pull-left">
       <div xid="div14" class="text text-center">
-       <img src="" alt="" xid="image12" class="pull-left text-center" style="width:30px;position: absolute;top:25%;" bind-attr-src="$model.getImageUrl('./img/icons/xingji.png')" height="30px"></img>
-       <h4 xid="h47" class="pull-right fontColor2" style="position: absolute;top:20%;left:20%;"><![CDATA[微民星级]]></h4></div> </span> </span> </div> </div><div component="$UI/system/components/bootstrap/row/row" class="row clearfix center-block  table-bordered x-fill" xid="personInfoRow" style="width:100%;" bind-click="personInfoRowClick">
+       <img src="" alt="" xid="image12" class="pull-left text-center" style="width:30px;position: absolute;top:25%;" bind-attr-src="$model.getImageUrl('./img/icons/wodejuanzeng.png')" height="30px"></img>
+       <h4 xid="h47" class="pull-right fontColor2" style="position: absolute;top:20%;left:20%;"><![CDATA[我的捐赠]]></h4></div> </span> </span> </div> </div><div component="$UI/system/components/bootstrap/row/row" class="row clearfix center-block  table-bordered x-fill" xid="personInfoRow" style="width:100%;" bind-click="personInfoRowClick">
     <div class="col col-xs-12" xid="col6" style="height:60px;">
      <span xid="span29">
       <span xid="span27" class="pull-left">
        <div xid="div23" class="text text-center">
         <img src="" alt="" xid="image3" class="pull-left text-center" style="width:30px;position: absolute;top:25%;" bind-attr-src="$model.getImageUrl('./img/icons/gerenxinxi.png')" height="30px"></img>
-        <h4 xid="h43" class="pull-right fontColor2" style="position: absolute;top:20%;left:20%;"><![CDATA[个人信息]]></h4></div> </span> </span> </div> </div> 
+        <h4 xid="h43" class="pull-right fontColor2" style="position: absolute;top:20%;left:20%;"><![CDATA[ WEI民卡金融功能]]></h4></div> </span> </span> </div> </div> 
   </div></div> 
       </div> 
     </div>  
@@ -212,9 +208,9 @@
           <span xid="span8">服务</span> 
         </a>  
         <a component="$UI/system/components/justep/button/button" class="btn btn-default btn-icon-top"
-          label="会员卡" xid="ownBtn" icon="icon-android-contacts" target="ownContent" onClick="ownBtnClick"> 
+          label="WEI民会员" xid="ownBtn" icon="icon-android-contacts" target="ownContent" onClick="ownBtnClick"> 
           <i xid="i8" class="icon-android-contacts"/>  
-          <span xid="span9">会员卡</span> 
+          <span xid="span9">WEI民会员</span> 
         </a> 
       </div> 
     </div> 

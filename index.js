@@ -137,7 +137,9 @@ define(function(require) {
 				this.comp('registrationCheckDialog').open();
 			} else {
 				this.comp("contents").to("ownContent");
-				this.loadOwnContentData();
+//				this.loadOwnContentData();
+				var bpCustsData = this.comp("bpCustsData");
+				bpCustsData.refreshData();
 			}
 		}
 
@@ -205,10 +207,10 @@ define(function(require) {
 			this.comp('registrationCheckDialog').open();
 		}
 	};
-
+/*
 	Model.prototype.xingjiRowClick = function(event) {
 		justep.Util.hint('敬请期待！');
-	};
+	};*/
 
 	Model.prototype.aixinjuanzengRowClick = function(event) {
 		this.comp("contents").to("goodsContent");
@@ -315,9 +317,11 @@ define(function(require) {
 				}
 			});
 		} else if (this._state == '1') {
-			this.comp('myDonationDialog').open({
+			this.comp('personInfoDialog').open({
 				data : {
-					uid3rdPara : this._userID
+					userPhotoURLPara : this._userPhotoURL,
+					uid3rdPara : this._userID,
+					userDefaultNamePara:this._userDefaultName					
 				}
 			});
 		} else if (this._state == '2') {
@@ -360,7 +364,9 @@ define(function(require) {
 				} else if (this._state == '2') {
 					this.comp('registrationCheckDialog').open();
 				} else {
-					this.loadOwnContentData();
+//					this.loadOwnContentData();
+					var bpCustsData = this.comp("bpCustsData");
+					bpCustsData.refreshData();
 				}
 			}
 			break;
@@ -456,6 +462,23 @@ define(function(require) {
 			}
 		});
 
+	};
+	Model.prototype.xingjiRowClick = function(event){
+		if (this._state == '0') {
+			this.comp('loginBindDialog').open({
+				data : {
+					uid3rdPara : this._userID
+				}
+			});
+		} else if (this._state == '1') {
+			this.comp('myDonationDialog').open({
+				data : {
+					uid3rdPara : this._userID
+				}
+			});
+		} else if (this._state == '2') {
+			this.comp('registrationCheckDialog').open();
+		}
 	};
 	return Model;
 });

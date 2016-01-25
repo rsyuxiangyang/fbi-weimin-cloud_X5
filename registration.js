@@ -33,6 +33,9 @@ define(function(require) {
 	Model.prototype.loginBindReceiverReceive = function(event) {
 		this._loginBind_uid3rd = event.data.uid3rdPara;
 		this._loginBind_displayName = event.data.displayNamePara;
+		$(this.getElementByXid("checkButton")).attr("disabled", true);
+		$(this.getElementByXid("saveUserBtn")).attr("disabled", true);			
+		
 	};
 
 	Model.prototype.telInputChange = function(event) {
@@ -170,6 +173,11 @@ define(function(require) {
 
 	};
 
+
+
+	Model.prototype.input5Change = function(event){
+		$(this.getElementByXid("saveUserBtn")).attr("disabled", false);	
+	};
 
 
 	return Model;
