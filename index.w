@@ -5,7 +5,7 @@
   <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;left:243px;top:291px;"
     onLoad="modelLoad"> 
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
-      xid="gmGoodsInfoData" idColumn="pkid" confirmDelete="true" limit="5" confirmRefresh="false" onCustomRefresh="gmGoodsInfoDataCustomRefresh"> 
+      xid="gmGoodsInfoData" idColumn="pkid" confirmDelete="true" limit="7" confirmRefresh="false" onCustomRefresh="gmGoodsInfoDataCustomRefresh"> 
       <column label="pkid" name="pkid" type="String" xid="default1"></column>
   <column label="goodsId" name="goodsId" type="String" xid="default2"></column>
   <column label="goodsName" name="goodsName" type="String" xid="default3"></column>
@@ -68,7 +68,7 @@
             </div>  
             <div class="x-scroll-content" xid="div5"> 
               <div component="$UI/system/components/justep/list/list" class="x-list x-cards"
-                xid="foodList" data="gmGoodsInfoData" limit="5">
+                xid="foodList" data="gmGoodsInfoData" limit="7">
                 <ul class="x-list-template list-group" xid="foodDetaillistTemplateUl1"> 
                   <li xid="li1" class="list-group-item"> 
                     <div class="media" xid="goodsDiv" bind-click="goodsDivClick"> 
