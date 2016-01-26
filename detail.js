@@ -65,6 +65,11 @@ define(function(require) {
 				$(this.getElementByXid("qtyInput")).attr("disabled", true);	
 				$(this.getElementByXid("reduceCountBtn")).attr("disabled", true);	
 				$(this.getElementByXid("addCountBtn")).attr("disabled", true);				
+			}else if(this._state=='1'){
+				$(this.getElementByXid("shoppingCartBtn")).attr("disabled", false);	
+				$(this.getElementByXid("qtyInput")).attr("disabled", false);	
+				$(this.getElementByXid("reduceCountBtn")).attr("disabled", false);	
+				$(this.getElementByXid("addCountBtn")).attr("disabled", false);				
 			}
 		}		
 	};

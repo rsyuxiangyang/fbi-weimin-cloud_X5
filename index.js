@@ -54,7 +54,7 @@ define(function(require) {
 		} else if (weixinCode !== "") {
 			this._deviceType = "wx";
 			if (justep.Browser.isWeChat) {
-//				 this.wxApi = new navigator.WxApi("wxb67cf3f14d6861e4");
+				// this.wxApi = new navigator.WxApi("wxb67cf3f14d6861e4");
 				this.wxApi = new navigator.WxApi("wx3267506118bc9677");
 			}
 
@@ -137,7 +137,7 @@ define(function(require) {
 				this.comp('registrationCheckDialog').open();
 			} else {
 				this.comp("contents").to("ownContent");
-//				this.loadOwnContentData();
+				// this.loadOwnContentData();
 				var bpCustsData = this.comp("bpCustsData");
 				bpCustsData.refreshData();
 			}
@@ -207,10 +207,10 @@ define(function(require) {
 			this.comp('registrationCheckDialog').open();
 		}
 	};
-/*
-	Model.prototype.xingjiRowClick = function(event) {
-		justep.Util.hint('敬请期待！');
-	};*/
+	/*
+	 * Model.prototype.xingjiRowClick = function(event) {
+	 * justep.Util.hint('敬请期待！'); };
+	 */
 
 	Model.prototype.aixinjuanzengRowClick = function(event) {
 		this.comp("contents").to("goodsContent");
@@ -321,7 +321,7 @@ define(function(require) {
 				data : {
 					userPhotoURLPara : this._userPhotoURL,
 					uid3rdPara : this._userID,
-					userDefaultNamePara:this._userDefaultName					
+					userDefaultNamePara : this._userDefaultName
 				}
 			});
 		} else if (this._state == '2') {
@@ -364,7 +364,7 @@ define(function(require) {
 				} else if (this._state == '2') {
 					this.comp('registrationCheckDialog').open();
 				} else {
-//					this.loadOwnContentData();
+					// this.loadOwnContentData();
 					var bpCustsData = this.comp("bpCustsData");
 					bpCustsData.refreshData();
 				}
@@ -388,7 +388,7 @@ define(function(require) {
 		this.comp("contents").to("goodsContent");
 		var bpCustsData = this.comp("bpCustsData");
 		bpCustsData.refreshData();
-//		alert(this._state);
+		// alert(this._state);
 	};
 
 	Model.prototype.goodsDetailDialogReceive = function(event) {
@@ -463,7 +463,7 @@ define(function(require) {
 		});
 
 	};
-	Model.prototype.xingjiRowClick = function(event){
+	Model.prototype.xingjiRowClick = function(event) {
 		if (this._state == '0') {
 			this.comp('loginBindDialog').open({
 				data : {

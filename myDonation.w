@@ -2,7 +2,7 @@
 
 <div xmlns="http://www.w3.org/1999/xhtml" class="main13" component="$UI/system/components/justep/window/window"
   design="device:m;" xid="window">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;left:250px;top:343px;"><div component="$UI/system/components/justep/data/data" autoLoad="false" xid="donationDtlData" idColumn="txnSn" limit="100" onCustomRefresh="donationDtlDataCustomRefresh">
+  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;left:250px;top:343px;"><div component="$UI/system/components/justep/data/data" autoLoad="false" xid="donationDtlData" idColumn="txnSn" limit="5" onCustomRefresh="donationDtlDataCustomRefresh">
    <column label="txnSn" name="txnSn" type="String" xid="column4"></column>
   <column label="createTime" name="createTime" type="String" xid="column5"></column>
   <column label="billNo" name="billNo" type="String" xid="column1"></column>
@@ -39,7 +39,7 @@
   
   <div xid="div2" style="position:relative;top:20px" class="pull-left"><img src="" alt="" xid="image3" height="30px" style="width:30px;"></img><span xid="span1" style="font-size:20px;color:white"><![CDATA[累计捐赠次数]]></span></div>
   <div xid="div4" style="width:50%;" class="pull-right"><h1 xid="h11" style="font-size:40px;position:relative;top:0px"><![CDATA[]]></h1></div></div> 
-  </div><div component="$UI/system/components/justep/list/list" class="x-list x-cards" xid="donationList" data="donationDtlData" limit="100" autoLoad="true">
+  </div><div component="$UI/system/components/justep/list/list" class="x-list x-cards" xid="donationList" data="donationDtlData" limit="5" autoLoad="true">
      <ul class="x-list-template list-group" xid="pointsDetaillistTemplateUl1">
       <li xid="li1" class="list-group-item">
        

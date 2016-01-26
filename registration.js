@@ -52,6 +52,12 @@ define(function(require) {
 		   justep.Util.hint('请输入卡后四位！');	   
 	   }else if(checkNumTemp==null||checkNumTemp==''){
 		   justep.Util.hint('请输入验证码！');	   
+	   }else if(telInputTemp.length!=11){
+		   justep.Util.hint('请输入11位手机号！');	   
+	   }else if(cardNoTemp.length!=4){
+		   justep.Util.hint('请输入4位卡后四位！');	   
+	   }else if(checkNumTemp.length!=4){
+		   justep.Util.hint('请输入4位验证码！');	   
 	   }else{  
 			var registerData = this.comp("registerData");
 			var row = registerData.toJson(true).rows[0];
@@ -119,32 +125,39 @@ define(function(require) {
 			var currentCount=totalCount - count;
 			_self.comp("checkButton").domNode.innerText = currentCount+'秒';
 			if (count == 1) {
-				_self._checkNumFlag='true';
+				
 				var telTemp = _self.comp("telInput").value;
-				var params = {
-					"uid3rd" : _self._loginBind_uid3rd,
-					"tel" : telTemp
-				};
-				var successFunc = function(resultData) {
-					var retResult = resultData["result"];				
-					if ("success" == retResult) {
-						justep.Util.hint("发送验证码成功！");					
-					}else if ("error" == retResult) {
-						justep.Error.create("发送验证码失败！");
-					} 
-				};
-				$.ajax({
-					type : "GET",
-					url : require.toUrl('/weixin/ms/X5/sendCheckNum'),
-					dataType : 'json',
-					data : params,
-					async : false,
-					cache : false,
-					success : successFunc,
-					error : function() {
-						throw justep.Error.create("发送验证码失败！");
-					}
-				});
+				if(telTemp.length!=11){
+					justep.Util.hint('请输入11位手机号！');
+					_self._checkNumFlag='false';
+				}else{
+					_self._checkNumFlag='true';
+					var params = {
+						"uid3rd" : _self._loginBind_uid3rd,
+						"tel" : telTemp
+					};
+					var successFunc = function(resultData) {
+						var retResult = resultData["result"];				
+						if ("success" == retResult) {
+							justep.Util.hint("发送验证码成功！");					
+						}else if ("error" == retResult) {
+							justep.Error.create("发送验证码失败！");
+						} 
+					};
+					$.ajax({
+						type : "GET",
+						url : require.toUrl('/weixin/ms/X5/sendCheckNum'),
+						dataType : 'json',
+						data : params,
+						async : false,
+						cache : false,
+						success : successFunc,
+						error : function() {
+							throw justep.Error.create("发送验证码失败！");
+						}
+					});			
+				
+				}				
 			}
 			if (totalCount - count == 0||_self._checkNumFlag=='false') {
 				window.clearInterval(timer);
