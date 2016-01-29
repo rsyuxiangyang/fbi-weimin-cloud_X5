@@ -21,9 +21,6 @@ define(function(require){
 		this.callParent();
 	};
 
-	
-	Model.prototype.modelLoad = function(event){
-	};
 
 
 	Model.prototype.registrationCheckReceiverReceive = function(event){
@@ -35,6 +32,7 @@ define(function(require){
 	Model.prototype.backBtnClick = function(event){
 		this.comp('registrationCheckReceiver').windowEnsure('2');
 	};
+
 
 
 

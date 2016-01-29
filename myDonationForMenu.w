@@ -13,9 +13,9 @@
   <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="loginBindDialog" src="$UI/takeout/registrationForMenu.w"></span>
   <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="registrationCheckDialog" src="$UI/takeout/registrationCheckForMenu.w"></span><div component="$UI/system/components/justep/panel/panel" class="x-panel x-full x-card"> 
     <div class="x-panel-top"> 
-      <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar"
+      <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar text-center"
         title="我的捐赠"> 
-        <div class="x-titlebar-left text-muted"> 
+        <div class="x-titlebar-left "> 
           </div>  
         <div class="x-titlebar-title">我的捐赠</div>  
         <div class="x-titlebar-right reverse"/> 

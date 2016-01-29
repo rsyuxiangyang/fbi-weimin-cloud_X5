@@ -3,14 +3,14 @@
 <div xmlns="http://www.w3.org/1999/xhtml" xid="window" class="window" component="$UI/system/components/justep/window/window" design="device:m;">  
   <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;left:409px;top:283px;"><div component="$UI/system/components/justep/data/data" autoLoad="true" xid="programs" idColumn="programsID"><column label="ID" name="programsID" type="Integer" xid="xid1"></column>
   <column label="项目名称" name="programsName" type="String" xid="xid2"></column></div></div> 
-<span component="$UI/system/components/justep/windowReceiver/windowReceiver" xid="windowReceiver1" onReceive="windowReceiver1Receive"></span><div component="$UI/system/components/justep/panel/panel" class="x-panel x-full  x-scroll-view" xid="panel1">
+<span component="$UI/system/components/justep/windowReceiver/windowReceiver" xid="windowReceiver1" onReceive="windowReceiver1Receive" style="left:88px;top:18px;"></span><div component="$UI/system/components/justep/panel/panel" class="x-panel x-full  x-scroll-view" xid="panel1">
    <div class="x-panel-top" xid="top1">
-  <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar" title="wei民风采" xid="titleBar4">
-   <div class="x-titlebar-left text-muted" xid="div10">
+  <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar text-center" title="wei民风采" xid="titleBar4">
+   <div class="x-titlebar-left " xid="div10">
     <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon" label="搜索" xid="button6" icon="icon-chevron-left" onClick="backBtnClick">
      <i xid="i6" class="icon-chevron-left"></i>
      <span xid="span6">搜索</span></a> </div> 
-   <div class="x-titlebar-title" xid="div11">wei民风采</div>
+   <div class="x-titlebar-title " xid="div11">wei民风采</div>
    <div class="x-titlebar-right reverse" xid="div12"></div></div></div>
    <div class="x-panel-content" xid="content1" style="background-color:#fafafa;">
   

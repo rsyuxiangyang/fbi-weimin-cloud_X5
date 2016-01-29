@@ -16,8 +16,8 @@
    <column label="displayName" name="displayName" type="String" xid="xid17"></column></div>
   </div> 
 <span component="$UI/system/components/justep/windowReceiver/windowReceiver" xid="personInfoReceiver" style="left:130px;top:13px;" onReceive="personInfoReceiverReceive"></span><div component="$UI/system/components/justep/panel/panel" class="x-panel x-full" xid="panel2">
-   <div class="x-panel-top" xid="top1"><div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar" title="个人信息" xid="titleBar1">
-   <div class="x-titlebar-left text-muted" xid="div2">
+   <div class="x-panel-top" xid="top1"><div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar  text-center" title="个人信息" xid="titleBar1">
+   <div class="x-titlebar-left " xid="div2">
     <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon" label="搜索" xid="backBtn" icon="icon-chevron-left" onClick="backBtnClick">
      <i xid="i6" class="icon-chevron-left"></i>
      <span xid="span6">搜索</span></a> </div> 

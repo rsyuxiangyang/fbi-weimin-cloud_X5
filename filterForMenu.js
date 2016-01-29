@@ -85,7 +85,8 @@ define(function(require){
 				self.comp('loginBindDialog').open({
 					data : {
 						uid3rdPara : self._userID,
-						menuTypePara:self._menuType
+						menuTypePara:self._menuType,
+						displayNamePara : self._userDefaultName
 					}
 				});
 			} else if ("error" == retResult) {

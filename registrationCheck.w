@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <div xmlns="http://www.w3.org/1999/xhtml" xid="window" class="window" component="$UI/system/components/justep/window/window" design="device:m;">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;left:80px;top:146px;" onLoad="modelLoad">
+  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;left:80px;top:146px;">
   </div> 
-<span component="$UI/system/components/justep/windowReceiver/windowReceiver" xid="windowReceiver1" style="left:57px;top:17px;" onReceive="windowReceiver1Receive"></span><div component="$UI/system/components/justep/panel/panel" class="x-panel x-full" xid="panel1">
+<span component="$UI/system/components/justep/windowReceiver/windowReceiver" xid="registrationCheckReceiver" style="left:57px;top:17px;"></span><div component="$UI/system/components/justep/panel/panel" class="x-panel x-full" xid="panel1">
    <div class="x-panel-top" xid="top1">
-   <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar" title="会员注册" xid="titleBar1">
-    <div class="x-titlebar-left text-muted" xid="div2">
+   <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar text-center" title="会员注册" xid="titleBar1">
+    <div class="x-titlebar-left" xid="div2">
      <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon" label="搜索" xid="backBtn" icon="icon-chevron-left" onClick="backBtnClick">
       <i xid="i6" class="icon-chevron-left"></i>
       <span xid="span6">搜索</span></a> </div> 

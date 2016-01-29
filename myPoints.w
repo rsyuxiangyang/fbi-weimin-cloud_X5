@@ -16,9 +16,9 @@
    <column label="累计减少积分数" name="cumuRedPoints" type="String" xid="column3"></column></div></div>  
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full x-card"> 
     <div class="x-panel-top"> 
-      <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar"
+      <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar  text-center"
         title="我的积分"> 
-        <div class="x-titlebar-left text-muted"> 
+        <div class="x-titlebar-left "> 
           <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon"
             label="搜索" xid="backBtn" icon="icon-chevron-left" onClick="backBtnClick"> 
             <i xid="i6" class="icon-chevron-left"/>  
@@ -73,4 +73,4 @@
     <span class="x-pull-up-label" xid="span5">加载更多...</span></div> 
   </div></div>  
     </div> 
-<span component="$UI/system/components/justep/windowReceiver/windowReceiver" xid="myPointsReceiver" style="left:61px;top:11px;" onReceive="myPointsReceiverReceive"></span></div>
+<span component="$UI/system/components/justep/windowReceiver/windowReceiver" xid="myPointsReceiver" style="left:100px;top:150px;" onReceive="myPointsReceiverReceive"></span></div>

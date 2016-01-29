@@ -59,7 +59,9 @@ define(function(require) {
 	Model.prototype.donationDtlDataCustomRefresh = function(event){
 		var donationDtlData = event.source;
 		var params = {
-			"uid3rd" : this._mydonation_uid3rd
+			"uid3rd" : this._mydonation_uid3rd,
+			"limit" : event.limit,
+			"offset" : event.offset
 		};
 		var successFunc = function(resultData) {
 			var retResult = resultData["result"];

@@ -12,9 +12,9 @@
   <column label="qty" name="qty" type="String" xid="xid7"></column></div></div>  
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full x-card"> 
     <div class="x-panel-top"> 
-      <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar"
+      <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar text-center"
         title="我的捐赠"> 
-        <div class="x-titlebar-left text-muted"> 
+        <div class="x-titlebar-left"> 
           <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon"
             label="搜索" xid="backBtn" icon="icon-chevron-left" onClick="backBtnClick"> 
             <i xid="i6" class="icon-chevron-left"/>  

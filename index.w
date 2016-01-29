@@ -52,7 +52,7 @@
   <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="goodsDetailDialog" src="$UI/takeout/detail.w" routable="true"></span><span component="$UI/system/components/justep/windowDialog/windowDialog" xid="loginBindDialog" src="$UI/takeout/registration.w" style="left:9px;top:11px;" onReceive="loginBindDialogReceive" routable="true"></span>
   
   <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="myPointsDialog" src="$UI/takeout/myPoints.w" style="left:9px;top:10px;" routable="true"></span>
-  <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="registrationCheckDialog" src="$UI/takeout/registrationCheck.w" routable="true"></span>
+  <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="registrationCheckDialog" src="$UI/takeout/registrationCheck.w" routable="true" onReceive="registrationCheckDialogReceive"></span>
   <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="fencaiDialog" src="$UI/takeout/weiDemeanour.w" routable="true"></span>
   <span component="$UI/system/components/justep/windowDialog/windowDialog" xid="myDonationDialog" routable="true" src="$UI/takeout/myDonation.w"></span><span component="$UI/system/components/justep/windowDialog/windowDialog" xid="personInfoDialog" src="$UI/takeout/personInfo.w" routable="true"></span><div component="$UI/system/components/justep/panel/panel" class="x-panel x-full"
     xid="panel1"> 
