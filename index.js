@@ -55,7 +55,7 @@ define(function(require) {
 			this._deviceType = "wx";
 			if (justep.Browser.isWeChat) {
 				// this.wxApi = new navigator.WxApi("wxb67cf3f14d6861e4");
-				this.wxApi = new navigator.WxApi("wx3267506118bc9677");
+				this.wxApi = new navigator.WxApi("wx9aa1c30a247cbe48");
 			}
 
 			$.getJSON("/baas/weixin/userinfo?code=" + weixinCode, function(weixinUser) {
